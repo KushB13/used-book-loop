@@ -38,3 +38,12 @@ ui-debug.log*
 .idea/
 *.swp
 *.swo
+
+# Project Cleanup
+legacy_backup/
+build_error.txt
+build_error_final.txt
+build_success_check.txt
+build_success_final.txt
+build_error_final.txt
+dist/

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { STYLES, THEME } from '../assets/Theme';
 import { Avatar } from '../components/atoms/Avatar';
-import { updateProfile } from '../../backend/database/ProfileService';
+import { updateProfile } from '../database/ProfileService';
 
 export const ProfileView = ({ userId, profile }) => {
   const [formData, setFormData] = useState({ displayName: '', bio: '', avatar: '📖' });

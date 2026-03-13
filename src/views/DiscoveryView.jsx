@@ -1,19 +1,37 @@
 import React, { useState } from 'react';
 import { STYLES, THEME } from '../assets/Theme';
-import { useDiscovery } from '../../backend/database/DiscoveryService';
+import { useDiscovery } from '../database/DiscoveryService';
 import { BookCard } from '../components/molecules/BookCard';
 import { LoadingSkeleton } from '../components/molecules/LoadingSkeleton';
 
 export const DiscoveryView = ({ userId, profile }) => {
-  const { books, loading } = useDiscovery();
+  const { discoveryBooks: books, loading } = useDiscovery();
   const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredBooks = books.filter(book => 
+    book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    book.genre.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div>
       <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
-        <div>
+        <div className="flex-1">
            <h2 className="text-3xl font-black text-slate-800 tracking-tight mb-2">Trending Near You</h2>
-           <p className="text-sm text-slate-400 font-medium font-mono uppercase tracking-widest">Global Community Feed</p>
+           <div className="flex items-center justify-between">
+             <p className="text-sm text-slate-400 font-medium font-mono uppercase tracking-widest">Global Community Feed</p>
+             <div className="relative w-64 lg:hidden">
+               <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 text-xs">🔍</span>
+               <input 
+                 type="text" 
+                 placeholder="Search feed..." 
+                 className={`${STYLES.input} pl-10 h-10 text-xs`}
+                 value={searchQuery}
+                 onChange={(e) => setSearchQuery(e.target.value)}
+               />
+             </div>
+           </div>
         </div>
       </div>
       
@@ -28,7 +46,7 @@ export const DiscoveryView = ({ userId, profile }) => {
         {loading ? (
           [1,2,3].map(i => <LoadingSkeleton key={i} />)
         ) : (
-          books.map(book => (
+          filteredBooks.map(book => (
             <BookCard 
               key={book.id} 
               book={book} 

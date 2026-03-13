@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { STYLES, THEME } from '../../assets/Theme';
-import { generateBookMetadata } from '../../../backend/services/GeminiService';
-import { generateBookCover } from '../../../backend/services/ImagenService';
-import { saveBook } from '../../../backend/database/LibraryService';
-import { searchBooks } from '../../../backend/services/GoogleBooksService';
+import { generateBookMetadata } from '../../services/GeminiService';
+import { generateBookCover } from '../../services/ImagenService';
+import { saveBook } from '../../database/LibraryService';
+import { searchBooks } from '../../services/GoogleBooksService';
 
 export const AddBookModal = ({ isOpen, onClose, userId, profile }) => {
   const [step, setStep] = useState(1); // 1: Search/Entry, 2: AI Enrichment, 3: Preview

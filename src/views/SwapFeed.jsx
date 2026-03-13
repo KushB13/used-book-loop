@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSwaps, handleSwapAction } from '../../backend/database/SwapService';
+import { useSwaps, handleSwapAction } from '../database/SwapService';
 import { STYLES, THEME } from '../assets/Theme';
 
 export const SwapFeed = ({ userId }) => {

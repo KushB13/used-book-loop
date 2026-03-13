@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from '../../backend/auth/AuthService';
+import { useAuth } from '../auth/AuthService';
 import { THEME, STYLES } from '../assets/Theme';
 
 export const LoginView = () => {

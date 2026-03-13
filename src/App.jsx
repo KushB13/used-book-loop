@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { useAuth } from './backend/auth/AuthService';
-import { useProfile } from './backend/database/ProfileService';
-import { useSwaps } from './backend/database/SwapService';
-import { STYLES, THEME } from './frontend/assets/Theme';
-import { Avatar } from './frontend/components/atoms/Avatar';
-import { NavLink } from './frontend/components/atoms/NavLink';
-import { LibraryView } from './frontend/views/LibraryView';
-import { ProfileView } from './frontend/views/ProfileView';
-import { DiscoveryView } from './frontend/views/DiscoveryView';
-import { SwapFeed } from './frontend/views/SwapFeed';
-import { AddBookModal } from './frontend/components/organisms/AddBookModal';
-import { LoginView } from './frontend/views/LoginView';
-import { UserProfile } from './frontend/components/molecules/UserProfile';
+import { useSwaps } from './database/SwapService';
+import { STYLES, THEME } from './assets/Theme';
+import { Avatar } from './components/atoms/Avatar';
+import { NavLink } from './components/atoms/NavLink';
+import { LibraryView } from './views/LibraryView';
+import { ProfileView } from './views/ProfileView';
+import { DiscoveryView } from './views/DiscoveryView';
+import { SwapFeed } from './views/SwapFeed';
+import { AddBookModal } from './components/organisms/AddBookModal';
+import { LoginView } from './views/LoginView';
+import { UserProfile } from './components/molecules/UserProfile';
+import { useStore } from './store/useStore';
+import ToastContainer from './components/ToastContainer';
 
 const App = () => {
-  const { user, loading: authLoading, logout } = useAuth();
-  const { profile, loading: profileLoading } = useProfile(user?.uid);
+  const { user, profile, loading, logout, init } = useStore();
   const { swaps } = useSwaps(user?.uid);
   const [currentView, setCurrentView] = useState('home');
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const unsub = init();
+    return () => unsub();
+  }, [init]);
 
   // Incoming pending swaps for the badge
   const pendingIncoming = swaps.filter(s => s.recipientId === user?.uid && s.status === 'pending').length;
@@ -195,6 +199,7 @@ const App = () => {
       </div>
 
       <AddBookModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} userId={user?.uid} profile={profile} />
+      <ToastContainer />
     </div>
   );
 };

@@ -26,40 +26,47 @@
 - **External APIs**: Google Books API (Volumes v1).
 - **Backend**: Firebase (Auth, Firestore, Hosting) + Firebase CLI.
 
-## 2. System Architecture (Multi-File Structure)
+## 2. System Architecture (Unified Source Tree)
 
-The application is structured into a modular filesystem for maintainability:
+The application follows a modular, unified source structure for maintainability and scalability:
 
 ```text
 ROOT/
-├── .firebaserc
-├── firebase.json
-├── firestore.rules
-├── firestore.indexes.json
-├── backend/
+├── index.html
+├── src/
+│   ├── App.jsx
+│   ├── main.jsx
 │   ├── firebase.js
 │   ├── auth/
 │   │   └── AuthService.js
 │   ├── database/
 │   │   ├── DiscoveryService.js
 │   │   ├── LibraryService.js
-│   │   └── ProfileService.js
-│   └── services/
-│       ├── GeminiService.js
-│       ├── ImagenService.js
-│       └── GoogleBooksService.js (NEW: Metadata fetching)
-└── frontend/
-    ├── assets/
-    │   └── Theme.js (SaaS Indigo Overhaul)
-    ├── components/
-    │   ├── atoms/ (Avatar, NavLink)
-    │   ├── molecules/ (BookCard, FilterBar, LoadingSkeleton)
-    │   └── organisms/ (AddBookModal)
-    ├── views/
-    │   ├── DiscoveryView.jsx (Trending Section)
-    │   ├── LibraryView.jsx (Active Listings)
-    │   └── ProfileView.jsx (Explorer Identity)
-    └── App.jsx (3-Column Controller & Navigation)
+│   │   ├── ProfileService.js
+│   │   └── SwapService.js
+│   ├── services/
+│   │   ├── GeminiService.js
+│   │   ├── ImagenService.js
+│   │   └── GoogleBooksService.js
+│   ├── store/
+│   │   └── useStore.js (Zustand Centralized State)
+│   ├── hooks/
+│   │   └── useToast.js
+│   ├── assets/
+│   │   └── Theme.js
+│   ├── components/
+│   │   ├── ErrorBoundary.jsx
+│   │   ├── ToastContainer.jsx
+│   │   ├── atoms/ (Avatar, NavLink)
+│   │   ├── molecules/ (BookCard, FilterBar, LoadingSkeleton, UserProfile)
+│   │   └── organisms/ (AddBookModal)
+│   └── views/
+│       ├── DiscoveryView.jsx
+│       ├── LibraryView.jsx
+│       ├── ProfileView.jsx
+│       ├── SwapFeed.jsx
+│       └── LoginView.jsx
+└── legacy_backup/ (Retired prototype structure)
 ```
 
 ## 3. Current Implementation Status
@@ -78,7 +85,9 @@ ROOT/
 
 - **v0.5.0**: UI renovation to Modern SaaS (Indigo) theme. Integrated Google Books API for metadata recognition. Refactored App.jsx to a 3-column layout with widget sidebars.
 - **v0.6.0 (Current)**: Mandatory Google Firebase Authentication gateway. Phase 4 Swap System (Trading) implemented with real-time notifications and Trade Center.
-- **v0.6.1**: Added unified platform startup scripts (`npm start`, `npm run fire`) and a Windows PowerShell ignition script (`fire_up.ps1`).
+- v0.6.1: Added unified platform startup scripts (`npm start`, `npm run fire`) and a Windows PowerShell ignition script (`fire_up.ps1`).
+- **v0.7.0**: Architectural Overhaul initialization. Moved all source code to `src/`. Secured configurations with `.env`. Initialized Vitest suite.
+- **v0.7.1 (Current)**: Global robust architecture. Implemented Zustand centralized store, Global Error Boundary, and Indigo Toast notification system. Normalization of relative imports and verified build/test suite stability (15/15 tests passing).
 
 ## 5. Pending Questions / Blockers
 

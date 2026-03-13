@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { STYLES, THEME } from '../../assets/Theme';
-import { submitSwapRequest } from '../../../backend/database/SwapService';
+import { submitSwapRequest } from '../../database/SwapService';
 
 export const BookCard = ({ book, isDiscovery, currentUserId, currentUserProfile }) => {
   const [requesting, setRequesting] = useState(false);

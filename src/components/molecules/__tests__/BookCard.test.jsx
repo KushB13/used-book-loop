@@ -4,7 +4,7 @@ import React from 'react';
 import { BookCard } from '../BookCard';
 
 // Mock the backend service
-vi.mock('../../../backend/database/SwapService', () => ({
+vi.mock('../../database/SwapService', () => ({
   submitSwapRequest: vi.fn(() => Promise.resolve()),
 }));
 
