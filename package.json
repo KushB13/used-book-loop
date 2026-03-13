@@ -4,21 +4,30 @@
   "description": "Book-Loop: AI-Enhanced Book Swapping Platform",
   "main": "App.jsx",
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "clsx": "^2.0.0",
     "firebase": "^10.7.1",
     "lucide-react": "^0.294.0",
-    "clsx": "^2.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "tailwind-merge": "^2.1.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@vitejs/plugin-react": "^4.7.0",
+    "jsdom": "^28.1.0",
     "vite": "^5.0.0",
-    "@vitejs/plugin-react": "^4.2.0"
+    "vitest": "^4.1.0"
   },
   "scripts": {
     "dev": "vite",
+    "start": "vite",
+    "fire": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage",
     "deploy:rules": "firebase deploy --only firestore:rules",
     "deploy:hosting": "npm run build && firebase deploy --only hosting",
     "deploy:all": "npm run build && firebase deploy"

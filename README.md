@@ -81,6 +81,9 @@ graph TD
 
 ### Development Scripts
 
+-   `./fire_up.ps1`: (Windows) Ignition script to install dependencies and start the platform.
+-   `npm start`: Start the full platform (Frontend + Firebase Logic).
+-   `npm run fire`: Alias to "fire up" the platform.
 -   `npm run dev`: Start the Vite development server.
 -   `npm run build`: Build the production bundle.
 -   `npm run deploy:all`: Build and deploy to Firebase Hosting & Firestore.

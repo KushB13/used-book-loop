@@ -78,6 +78,7 @@ ROOT/
 
 - **v0.5.0**: UI renovation to Modern SaaS (Indigo) theme. Integrated Google Books API for metadata recognition. Refactored App.jsx to a 3-column layout with widget sidebars.
 - **v0.6.0 (Current)**: Mandatory Google Firebase Authentication gateway. Phase 4 Swap System (Trading) implemented with real-time notifications and Trade Center.
+- **v0.6.1**: Added unified platform startup scripts (`npm start`, `npm run fire`) and a Windows PowerShell ignition script (`fire_up.ps1`).
 
 ## 5. Pending Questions / Blockers
 
